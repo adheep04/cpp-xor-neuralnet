@@ -49,12 +49,27 @@ void initWeight(vector<vector<float>> weight) {
 }
 
 // addition operation
-vector<vector<float>> add(vector<vector<float>> weight, vector<vector<float>> bias) {
-    int outDim =  
+// outVector: (outSize, 1), bias: (outSize, 1)
+vector<vector<float>> addBias(vector<vector<float>> outVector, vector<vector<float>> bias) {
+    int outDim = outVector.size();
+    for (int i = 0; i < outDim; i++) {
+        float biasTerm = bias[i][0];
+        outVector[i][0] += biasTerm;
+    }
+
+    return outVector;
 }
 
-// matrix multiply operation
-vector<vector<float>> matMul(vector<vector<float>> weight, vector<vector<float>> x) {
+// matrix multiply operation for weights and input
+vector<vector<float>> mulWeight(vector<vector<float>> weight, vector<vector<float>> x) {
+    // get weight*input product dimensions for output vector
+    int dimOne = weight.size();
+    int dimTwo = x[0].size();
+
+    // initialize output vector
+    vector<vector<float>> outVector = vector<vector<float>>(dimOne, vector<float>(dimTwo));
+
+    
 
 }
 
