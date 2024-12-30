@@ -5,27 +5,26 @@ using std::vector;
 
 class NeuralLayer {
 private:
-    int inDim;
-    int outDim;
-    vector<vector<float>> weight;
-    vector<vector<float>> bias;
-    vector<vector<float>> lastInput;
-    vector<vector<float>> gradWeight;
-    vector<vector<float>> gradBias;
-    vector<vector<float>> gradOut;
+    using tensor2d = vector<vector<float>>;
+    int in_dim;
+    int out_dim;
+    tensor2d weight;
+    tensor2d bias;
+    tensor2d last_x;
+    tensor2d grad_weight;
+    tensor2d grad_bias;
 public:
 
     // constructor
-    NeuralLayer(int inDim, int outDim);
+    NeuralLayer(int in_dim, int out_dim);
 
     // forward pass
-    vector<vector<float>> forward(vector<vector<float>> x);
+    tensor2d forward(tensor2d x);
 
     // backward pass
-    vector<vector<float>> backward();
+    tensor2d backward(tensor2d grad_in);
 
-    // getters
-    vector<vector<float>> getLastInput();
+    tensor2d operator()(tensor2d x);
 };
 
 #endif
